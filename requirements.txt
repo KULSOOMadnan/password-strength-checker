@@ -1,2 +1,4 @@
-streamlit==1.25.0
-
+pillow
+streamlit
+uv
+python=3.13
