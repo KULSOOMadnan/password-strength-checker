@@ -74,6 +74,13 @@ elif section == "Password Strength Checker":
     st.subheader("🔍 Check Password Strength")
     password = st.text_input("Enter your password:", type="password")
     
+    # Toggle button to show/hide password
+    if st.toggle("Show Password"):
+        if password:
+            st.write(f'🔒 Password: {password}')
+        else:
+            st.warning("⚠️ Please enter a password first.")
+    
     if st.button("Check Password Strength"):
         if password:
             score, feedback = check_password_strength(password)
@@ -90,8 +97,11 @@ elif section == "Password Strength Checker":
             
             for item in feedback:
                 st.write(item)
+                
         else:
             st.error("Please enter a password to check.")
+            
+    
 
 elif section == "Password Generator":
     st.subheader("🔑 Generate a Strong Password")
@@ -102,7 +112,7 @@ elif section == "Password Generator":
         st.session_state.password_history.append(strong_password)
         st.text_input("Suggested Strong Password:", strong_password)
         if st.button("Copy to Clipboard"):
-            st.success("✅ Password copied successfully!")
+            st.toast("Password copied to clipboard!", icon="✅")
 
 elif section == "History":
     st.subheader("📜 Generated Passwords History")
@@ -119,6 +129,7 @@ elif section == "History":
     
 # Footer
 st.markdown("<p style='text-align:center; font-weight:bold;'>Made by Kulsoom Adnan</p>", unsafe_allow_html=True)
+
 
 
 
